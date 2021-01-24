@@ -39,9 +39,9 @@ function Circle(x, y, r, dx, dy) {
 let circleArray = [];
 for (i = 0; i < 100; i++) {
     let x = Math.random() * window.innerWidth;
-    let dx = (Math.random() - 0.5);
+    let dx = (Math.random() - 0.5) * 3;
     let y = Math.random() * window.innerHeight;
-    let dy = (Math.random() - 0.5);
+    let dy = (Math.random() - 0.5) *3;
     let r = (Math.random()) * 50;
     circleArray.push(new Circle(x, y, r, dx, dy))
 }
