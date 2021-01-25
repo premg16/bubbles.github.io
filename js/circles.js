@@ -24,7 +24,7 @@ window.addEventListener('resize', function () {
     init();
 })
 
-function Circle(x, y, rad, dx, dy) {
+function Circle(x, y, rad, dx, dy, color) {
 
     this.x = x;
     this.y = y;
@@ -32,16 +32,12 @@ function Circle(x, y, rad, dx, dy) {
     this.dx = dx;
     this.dy = dy;
     this.minRad = rad;
-
-    let r = Math.floor(Math.random() * 255);
-    let g = Math.floor(Math.random());
-    let b = Math.floor(Math.random() * 255);
-    let alpha = Math.random();
+    this.color = color;
 
     this.draw = function () {
         c.beginPath();
+        c.fillStyle = this.color;
         c.arc(this.x, this.y, this.rad, 0, Math.PI * 2, false);
-        c.fillStyle = "rgba(" + r + "," + g + "," + b + "," + alpha + ")";
         c.fill();
     }
     this.update = function () {
@@ -57,11 +53,11 @@ function Circle(x, y, rad, dx, dy) {
         this.y += this.dy;
 
         // interactivity
-        if (mouse.x - this.x < 50 && mouse.x - this.x > -50 &&
-            mouse.y - this.y < 50 && mouse.y - this.y > -50
+        if (mouse.x - this.x < 40 && mouse.x - this.x > -40 &&
+            mouse.y - this.y < 40 && mouse.y - this.y > -40
         ) {
             if (this.rad < maxRad) {
-                this.rad += 3;
+                this.rad += 5;
             }
         } else if (this.rad > this.minRad) {
             this.rad -= 1;
@@ -75,17 +71,20 @@ let circleArray = [];
 
 function init() {
     circleArray = [];
-    for (i = 0; i < 1000; i++) {
+    for (i = 0; i < 1500; i++) {
 
         let x = Math.random() * window.innerWidth;
-        let dx = (Math.random() - 0.5);
+        let dx = (Math.random() - 0.5) * 5;
         let y = Math.random() * window.innerHeight;
-        let dy = (Math.random() - 0.5);
-        let rad = (Math.random()) * 8 + 1;
-        circleArray.push(new Circle(x, y, rad, dx, dy))
+        let dy = (Math.random() - 0.5) * 5;
+        let rad = 0;
+        let r = Math.floor(Math.random() * 180);
+        let g = Math.floor(Math.random());
+        let b = Math.floor(Math.random() * 180);
+        let color = "rgb( "+ r + ","+ g + ","+ b + ")";
+        circleArray.push(new Circle(x, y, rad, dx, dy, color))
 
     }
-    console.log('init is called');
 }
 
 function animate() {
