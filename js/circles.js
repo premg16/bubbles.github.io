@@ -68,6 +68,16 @@ function Circle(x, y, rad, dx, dy, color) {
 }
 
 let circleArray = [];
+let theme = ["rgba(255, 109, 0, 1)",
+    "rgba(255, 121, 0, 1)",
+    "rgba(255, 133, 0, 1)",
+    "rgba(255, 145, 0, 1)",
+    "rgba(255, 158, 0, 1)",
+    "rgba(36, 0, 70, 1)",
+    "rgba(60, 9, 108, 1)",
+    "rgba(90, 24, 154, 1)",
+    "rgba(123, 44, 191, 1)",
+    "rgba(157, 78, 221, 1)"]
 
 function init() {
     circleArray = [];
@@ -78,10 +88,7 @@ function init() {
         let y = Math.random() * window.innerHeight;
         let dy = (Math.random() - 0.5) * 5;
         let rad = 0;
-        let r = Math.floor(Math.random() * 180);
-        let g = Math.floor(Math.random());
-        let b = Math.floor(Math.random() * 180);
-        let color = "rgb( "+ r + ","+ g + ","+ b + ")";
+        let color = theme[Math.floor(Math.random() * theme.length)];
         circleArray.push(new Circle(x, y, rad, dx, dy, color))
 
     }
